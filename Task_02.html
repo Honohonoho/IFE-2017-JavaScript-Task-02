@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+</head>
+<body>
+
+<h3>污染城市列表</h3>
+<ul id="aqi-list">
+    <!--
+        <li>第一名：福州（样例），10</li>
+          <li>第二名：福州（样例），10</li> -->
+</ul>
+
+<script type="text/javascript">
+
+    var aqiData = [
+        ["北京", 90],
+        ["上海", 50],
+        ["福州", 10],
+        ["广州", 50],
+        ["成都", 90],
+        ["西安", 100]
+    ];
+        /*
+         在注释下方编写代码
+         遍历读取aqiData中各个城市的数据
+         将空气质量指数大于60的城市显示到aqi-list的列表中
+         */
+    //第一步，先筛选，使用sort()方法，由于该方法比较的是字符串大小，所以要传入一个比较函数
+    function compare(pre,next){
+        return next[1]-pre[1];
+    }
+    //把结果赋给新的变量
+    newaqiData=aqiData.sort(compare);
+    //筛选其中大于60的项，建立列表
+    var ul=document.getElementById("aqi-list");
+    var x=["第一名：","第二名：","第三名：","第四名：","第五名：","第六名："];
+    var y=0;
+    for(i=0;i<newaqiData.length;i++){
+        if(newaqiData[i][1]>60)//筛选大于60的项
+        {
+            var li=document.createElement("li");//创建一个元素节点
+            var text=document.createTextNode(x[y]+newaqiData[i]);//创建一个文本节点
+            li.appendChild(text);//把文本节点添加进元素节点
+            ul.appendChild(li);//把元素节点添加进列表元素里
+            y++;
+        }
+    }
+</script>
+</body>
+</html>
